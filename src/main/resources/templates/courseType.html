@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+    <title>课程分类</title>
+</head>
+<body>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>分类名称</th>
+                <th>课程数量</th>
+                <th>创建时间</th>
+            </tr>
+            </thead>
+            <tbody th:each="item:${pageData.getRecords()}">
+                <tr>
+                    <td th:text="${item.id}" hidden></td>
+                    <td th:text="${itemStat.index + 1}"></td>
+                    <td th:text="${item.typeName}"></td>
+                    <td ><a th:text="${item.courseNum}" th:href="${#request.contextPath} + '/course/listCourse?typeId=' + ${item.id}"></a></td>
+                    <td th:text="${#temporals.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal-footer no-margin-top">
+        <ul class="pagination pull-right no-margin">
+            <!-- 首页 -->
+            <li>
+                <a th:href="'listType?pageNum=1'">首页</a>
+            </li>
+            <!-- 上一页 -->
+            <li th:if="${pageData.hasPrevious()}">
+                <a th:href="'listType?pageNum=' + ${pageData.getCurrent() - 1}" th:text="上一页"></a>
+            </li>
+            <li >
+                <a th:text="'总数:' + ${pageData.getTotal()}"></a>
+            </li>
+            <li >
+                <a th:text="'当前页:' + ${pageData.getCurrent()}"></a>
+            </li>
+            <li >
+                <a th:text="'总页数:' + ${pageData.getPages()}"></a>
+            </li>
+            <!-- 下一页 -->
+            <li th:if="${pageData.hasNext()}">
+                <a th:href="'listType?pageNum=' + ${pageData.getCurrent() + 1}" th:text="下一页"></a>
+            </li>
+            <!-- 尾页 -->
+            <li>
+                <a th:href="'listType?pageNum=' + ${pageData.getPages()}">尾页</a>
+            </li>
+
+        </ul>
+    </div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

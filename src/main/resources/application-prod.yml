@@ -1,0 +1,14 @@
+spring:
+  # 连接池
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.14.83.126:3306/tencent?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+task:
+  getData:
+    enable: true
+
+
+
+
