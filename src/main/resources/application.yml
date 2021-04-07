@@ -7,7 +7,7 @@ spring:
   application:
     name: tencent
   profiles:
-    active: local
+    active: prod
   # 连接池
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -61,7 +61,7 @@ mybatis-plus:
 task:
   getData:
     baseUrl: https://ke.qq.com/
-    cron: 0 22 21 * * ?
+    cron: 0 10 11 * * ?
 
 
 

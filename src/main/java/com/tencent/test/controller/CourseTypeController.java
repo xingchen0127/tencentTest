@@ -13,8 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Wrapper;
-
 @Slf4j
 @Controller
 @RequestMapping("/courseType")
@@ -36,9 +34,7 @@ public class CourseTypeController {
             courseTypePage.setCurrent(pageNum);
             courseTypePage.setSize(pageSize);
 
-            courseTypePage = courseTypeService.page(courseTypePage, Wrappers.<CourseType>lambdaQuery()
-                .orderByDesc(CourseType::getCreateTime)
-            );
+            courseTypePage = courseTypeService.page(courseTypePage);
 
             model.addAttribute("pageData", courseTypePage);
 

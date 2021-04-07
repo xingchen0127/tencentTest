@@ -22,7 +22,7 @@
             <tbody th:each="item:${pageData.getRecords()}">
                 <tr>
                     <td th:text="${item.id}" hidden></td>
-                    <td th:text="${itemStat.index + 1}"></td>
+                    <td th:text="${(pageData.getCurrent()-1)*pageData.getSize() + itemStat.index + 1}"></td>
                     <td th:text="${item.typeName}"></td>
                     <td ><a th:text="${item.courseNum}" th:href="${#request.contextPath} + '/course/listCourse?typeId=' + ${item.id}"></a></td>
                     <td th:text="${#temporals.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>

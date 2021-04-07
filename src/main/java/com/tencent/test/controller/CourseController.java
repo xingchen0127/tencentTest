@@ -36,7 +36,6 @@ public class CourseController {
             coursePage.setSize(pageSize);
             coursePage = courseService.page(coursePage, Wrappers.<Course>lambdaQuery()
                     .eq(Course::getCourseType, typeId)
-                    .orderByDesc(Course::getCreateTime)
             );
 
             model.addAttribute("pageData", coursePage);

@@ -38,7 +38,8 @@ public class GetDataTask {
     public void getData(){
         if (getDataEnalbe){
             logger.info("开始获取课程数据......");
-            ThreadPoolExecutor fetchAddressPool = new ThreadPoolExecutor(50, 50, 10, TimeUnit.MINUTES, new LinkedBlockingQueue<Runnable>());
+            ThreadPoolExecutor fetchAddressPool =
+                    new ThreadPoolExecutor(50, 50, 10, TimeUnit.MINUTES, new LinkedBlockingQueue<Runnable>());
 
             try {
 
