@@ -2,6 +2,7 @@ package com.tencent.test.task;
 
 import com.tencent.test.entity.CourseType;
 import com.tencent.test.model.CourseModel;
+import com.tencent.test.service.ICourseTypeService;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -30,11 +32,14 @@ class GetDataTaskTest {
 
     private String baseUrl = "https://ke.qq.com/";
 
+    @Autowired
+    private ICourseTypeService courseTypeService;
+
     @Test
     void getData() {
         logger.info("开始获取课程数据......");
         ThreadPoolExecutor fetchAddressPool =
-                new ThreadPoolExecutor(50, 50, 10, TimeUnit.MINUTES, new LinkedBlockingQueue<Runnable>());
+                new ThreadPoolExecutor(20, 20, 30, TimeUnit.MINUTES, new LinkedBlockingQueue<Runnable>());
 
         try {
             long startTime = System.currentTimeMillis();
@@ -80,6 +85,12 @@ class GetDataTaskTest {
             logger.info("课程总数：" + allCourseList.size());
             long endTime = System.currentTimeMillis();
             logger.info("获取课程数据耗时：" + (endTime - startTime));
+
+            startTime = System.currentTimeMillis();
+            //将课程分类和课程插入数据库
+            courseTypeService.insertData(courseTypeList, allCourseList);
+            endTime = System.currentTimeMillis();
+            logger.info("插入课程数据耗时：" + (endTime - startTime));
 
         }catch (Exception e){
             logger.error("拉取课程数据失败：");
@@ -210,7 +221,7 @@ class GetDataTaskTest {
 
         String cssQuery = ".course-card-list > li";
         try{
-            Document document = connect.userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)").timeout(6000)
+            Document document = connect.userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)").timeout(30000)
                     .ignoreContentType(true).get();
 
             Elements elements = document.select(cssQuery);
@@ -255,7 +266,7 @@ class GetDataTaskTest {
         try {
             Connection connect = Jsoup.connect(url);
             //设置useragent,设置超时时间，并以get请求方式请求服务器
-            Document document = connect.userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)").timeout(6000)
+            Document document = connect.userAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)").timeout(30000)
                     .ignoreContentType(true).get();
             //获取指定标签的数据
             elements = document.select(cssQuery);

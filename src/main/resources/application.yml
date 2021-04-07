@@ -61,7 +61,7 @@ mybatis-plus:
 task:
   getData:
     baseUrl: https://ke.qq.com/
-    cron: 0 10 11 * * ?
+    cron: 0 0 13 * * ?
 
 
 
