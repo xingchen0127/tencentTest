@@ -8,7 +8,7 @@
 
 #### **1.2概念模型设计**
 
-![img](.\images\wps1.jpg) 
+![img](./images/wps1.jpg) 
 
 #### **1.3数据库表设计**
 
@@ -74,25 +74,25 @@
 
 **2.2.1.1使用定时任务定时启动爬虫任务，使用Jsoup首先分别获取一级、二级、三级分类的url，用于后续爬取课程数据。**
 
-![img](.\images\wps2.jpg) 
+![img](./images/wps2.jpg) 
 
  
 
 获取html标签的通用方法
 
-![img](.\images\wps3.jpg) 
+![img](./images/wps3.jpg) 
 
  
 
 获取一级课程分类url
 
-![img](.\images\wps4.jpg) 
+![img](./images/wps4.jpg) 
 
  
 
 获取二级课程分类url
 
-![img](.\images\wps5.jpg) 
+![img](./images/wps5.jpg) 
 
  
 
@@ -100,31 +100,31 @@
 
 获取三级分类课程，并保存到CourseType对象中
 
-![img](.\images\wps6.jpg) 
+![img](./images/wps6.jpg) 
 
  
 
 **2.2.1.2使用线程池爬取每个三级分类下所有的课程信息**
 
-![img](.\images\wps7.jpg) 
+![img](./images/wps7.jpg) 
 
  
 
 获取三级分类下所有的课程信息
 
-![img](.\images\wps8.jpg) 
+![img](./images/wps8.jpg) 
 
  
 
 递归获取下一页数据
 
-![img](.\images\wps9.jpg) 
+![img](./images/wps9.jpg) 
 
  
 
 **2.2.1.3 得到所有课程信息和课程分类信息并插入数据库**
 
-![img](.\images\wps10.jpg) 
+![img](./images/wps10.jpg) 
 
  
 
@@ -132,7 +132,7 @@
 
 主要使用Mybatis-Plus中自带的分页方法实现分页查询
 
-![img](.\images\wps11.jpg) 
+![img](./images/wps11.jpg) 
 
  
 
@@ -140,6 +140,6 @@
 
 主要使用Mybatis-Plus中自带的分页方法实现分页查询
 
-![img](.\images\wps12.jpg) 
+![img](./images/wps12.jpg) 
 
  
